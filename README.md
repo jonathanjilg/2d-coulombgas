@@ -1,12 +1,12 @@
 # 2d-coulombgas
 A Monte Carlo implementation of the 2D Coulomb gas model using the Metropolis algorithm. Both periodic and open boundary conditions are allowed, the latter for mirror configurations used with the method of images.
 
-The 2D Coulomb gas (2D CG) is a two-dimensional lattice (a grid with dimension Lx by Ly) where each lattice site is populated by a electrical charge. The charges can have values 0, -1, 1, -2, 2, and so on. To each configuration, one can calculate an energy H which is calculated by the Coulomb potential in 2D (proportional to -ln(r) where r is the distance).
+The 2D Coulomb gas (2D CG) is a two-dimensional lattice (a grid with dimension Lx by Ly) where each lattice site is populated by a electrical charge. The charges can have values 0, -1, 1, -2, 2, and so on. To each configuration, one can calculate an energy H which is calculated by the Coulomb potential in 2D (proportional to <img src="https://render.githubusercontent.com/render/math?math=-\ln(r)"> where <img src="https://render.githubusercontent.com/render/math?math=r"> is the distance).
 
 The Metropolis algorithm simulates this model in a thermal equilibrium where the probability of each configuration is proportional to its Boltzmann weight exp(-\beta H). A new configuration is randomly selected by trying a pair charge insertion at a location, from a given previous configuration. The general outline of the algorithm is:
 1. Generate a new proposed configuration of the lattice model.
-2. Calculate the resulting change in energy $\Delta H$ of the proposed change.
-3. Accept if $\Delta H \leq 0$ or with probability $e^{-\beta \Delta H}$. Reject otherwise.
+2. Calculate the resulting change in energy <img src="https://render.githubusercontent.com/render/math?math=\Delta H"> of the proposed change.
+3. Accept if <img src="https://render.githubusercontent.com/render/math?math=\Delta H \leq 0"> or with probability <img src="https://render.githubusercontent.com/render/math?math=e^{-\beta \Delta H}">. Reject otherwise.
 4. If accepted, change to the new proposed lattice configuration and update values.
 5. Repeat.
 
