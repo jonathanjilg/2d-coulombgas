@@ -1,7 +1,7 @@
 # 2d-coulombgas
 A Monte Carlo implementation of the 2D Coulomb gas model using the Metropolis algorithm. Both periodic and open boundary conditions are allowed, the latter for mirror configurations used with the method of images.
 
-The 2D Coulomb gas (2D CG) is a two-dimensional lattice (a grid with dimension Lx by Ly) where each lattice site is populated by a electrical charge. The charges can have values 0, -1, 1, -2, 2, and so on. To each configuration, one can calculate an energy H which is calculated by the Coulomb potential in 2D (proportional to <img src="https://render.githubusercontent.com/render/math?math={\color{grey}\-\ln(r)"> where <img src="https://render.githubusercontent.com/render/math?math={\color{gray}\r"> is the distance).
+The 2D Coulomb gas (2D CG) is a two-dimensional lattice (a grid with dimension Lx by Ly) where each lattice site is populated by a electrical charge. The charges can have values 0, -1, 1, -2, 2, and so on. To each configuration, one can calculate an energy H which is calculated by the Coulomb potential in 2D (proportional to <img src="https://render.githubusercontent.com/render/math?math={\color{white}\-\ln(r)"> where <img src="https://render.githubusercontent.com/render/math?math={\color{gray}\r"> is the distance).
 
 The Metropolis algorithm simulates this model in a thermal equilibrium where the probability of each configuration is proportional to its Boltzmann weight exp(-\beta H). A new configuration is randomly selected by trying a pair charge insertion at a location, from a given previous configuration. The general outline of the algorithm is:
 1. Generate a new proposed configuration of the lattice model.
