@@ -10,7 +10,7 @@ The Metropolis algorithm simulates this model in a thermal equilibrium where the
 4. If accepted, change to the new proposed lattice configuration and update values.
 5. Repeat.
 
-Most difficulties in simulating the 2D CG are the energy calculations which are costly and might diverge due to the potential V ~ -ln(r). This implementation does the following:
+Most difficulties in simulating the 2D CG are the energy calculations which are costly and might diverge due to the potential <img src="https://render.githubusercontent.com/render/math?math={\color{gray}\ \Delta H \leq 0}"> or with probability <img src="https://render.githubusercontent.com/render/math?math={\color{gray}\ V \sim -\ln(r)}">. This implementation does the following:
 1. Construct the potential V as a finite Fourier sum with a screening length lambda.
 2. Calculate energy differences with optimized derived formulas instead of calculating the total energy.
 
