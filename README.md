@@ -1,7 +1,11 @@
 # 2d-coulombgas
-A Monte Carlo implementation of the 2D Coulomb gas model using the Metropolis algorithm. Both periodic and open boundary conditions are allowed, the latter for mirror configurations used with the method of images.
+This code is part of a master thesis at KTH modeling superconducting nanowires. With some simplifications, superconducting vortices may be modeled as electrical charges interacting with the 2D Coulomb potential.
+
+This is a Monte Carlo implementation of the 2D Coulomb gas model using the Metropolis algorithm. Both periodic and open boundary conditions are allowed, the latter for mirror configurations used with the method of images.
 
 The 2D Coulomb gas (2D CG) is a two-dimensional lattice (a grid with dimension Lx by Ly) where each lattice site is populated by a electrical charge. The charges can have values 0, -1, 1, -2, 2, and so on. To each configuration, one can calculate an energy H which is calculated by the Coulomb potential in 2D (proportional to <img src="https://render.githubusercontent.com/render/math?math={\color{grey} -\ln(r)}"> where <img src="https://render.githubusercontent.com/render/math?math={\color{gray}r}"> is the distance).
+
+## Theory
 
 The Metropolis algorithm simulates this model in a thermal equilibrium where the probability of each configuration is proportional to its Boltzmann weight exp(-\beta H). A new configuration is randomly selected by trying a pair charge insertion at a location, from a given previous configuration. The general outline of the algorithm is:
 1. Generate a new proposed configuration of the lattice model.
@@ -17,3 +21,7 @@ Most difficulties in simulating the 2D CG are the energy calculations which are 
 The mirror configuration with open boundary condition is somewhat more difficult rather than a regular configuration with periodic boundary conditions.
 1. All new configurations are mirror images.
 2. All energy calculations use corresponding formulas for mirror configurations.
+
+## References
+* https://en.wikipedia.org/wiki/Metropolis%E2%80%93Hastings_algorithm
+* Master thesis to be published
