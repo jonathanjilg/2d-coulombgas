@@ -55,10 +55,12 @@ def sweep(current,lattice,V,T,H,N,qy_flow):
                     T (float): Temperature
                     H (float): Energy
                     N (float): Number of particles
+                    qy_flow (float): The flow of particles in y direction.
             Returns:
                     lattice (array): The sweeped lattice
                     H: The updated energy
                     N: The updated particle number
+                    qy_flow (float): The flow of particles in y direction.
     '''
     Lx,Ly = lattice.shape
     for step in range(Lx*Ly):
@@ -113,10 +115,12 @@ def sweep_mirror(current,lattice,V,T,H,N,qy_flow):
                     T (float): Temperature
                     H (float): Energy
                     N (float): Number of particles
+                    qy_flow (float): The flow of particles in y direction.
             Returns:
                     lattice (array): The sweeped lattice
                     H: The updated energy
                     N: The updated particle number
+                    qy_flow (float): The flow of particles in y direction.
     '''
     Lx,Ly_tot = lattice.shape
     Ly = Ly_tot//2
@@ -150,7 +154,7 @@ def sweep_mirror(current,lattice,V,T,H,N,qy_flow):
             dq = 2*np.random.randint(2)-1
 
             # 3. Calculate energy change
-            dH = calc_dH_pair_mirror(dq,q1,q2,current,x1,y1,x2,y2,lattice,V) # configuration
+            dH = calc_dH_pair_mirror(dq,q1,q2,x1,y1,x2,y2,lattice,V) # configuration
             dH_curr = -current*dy*dq # current coupling
             # 4. Metropolis acceptance test
             if np.random.rand() < np.exp(-(dH+dH_curr)/T):
@@ -165,7 +169,7 @@ def sweep_mirror(current,lattice,V,T,H,N,qy_flow):
             q1 = lattice[x1,y1]
             dq = 2*np.random.randint(2)-1
             # 3. Calculate energy change
-            dH = calc_dH_single_mirror(dq,q1,current,x1,y1,lattice,V) # configuration
+            dH = calc_dH_single_mirror(dq,q1,x1,y1,lattice,V) # configuration
             dH_curr = -current*dy*dq # current coupling
 
             # 4. Metropolis acceptance test

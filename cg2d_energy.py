@@ -45,14 +45,13 @@ def calc_V(Lx,Ly,lambd,x_period_factor = 1,y_period_factor = 1):
     return V
 
 @njit
-def calc_H(current,lattice,V):
+def calc_H(lattice,V):
     '''
     Returns the total energy H of a lattice configuration given a potential V
     by summing over all pair interactions, including self energy.
     It does not include current energy!
 
             Parameters:
-                    current (float): Applied current
                     lattice (array): The configuration of charges with shape [Lx,Ly].
                     V (array): The potential with shape [Lx,Ly].
 
@@ -70,7 +69,7 @@ def calc_H(current,lattice,V):
                 for y2 in range(Ly):
                     q2 = lattice[x2,y2]
                     H += 0.5*q1*q2*V[abs(x2-x1),abs(y2-y1)] # configuration energy
-    return 
+    return H
 
 @njit
 def calc_dH_pair(dq,q1,q2,x1,y1,x2,y2,lattice,V):
@@ -107,7 +106,7 @@ def calc_dH_pair(dq,q1,q2,x1,y1,x2,y2,lattice,V):
     return dH
 
 @njit
-def calc_dH_single(dq,q1,current,x1,y1,lattice,V):
+def calc_dH_single(dq,q1,x1,y1,lattice,V):
     '''
     Returns the change in energy dH (float) of insertion of a single vortex at site 1 given a configuration and potential.
 
@@ -135,7 +134,7 @@ def calc_dH_single(dq,q1,current,x1,y1,lattice,V):
     return dH
 
 @njit
-def calc_dH_pair_mirror(dq,q1,q2,current,x1,y1,x2,y2,lattice,V):
+def calc_dH_pair_mirror(dq,q1,q2,x1,y1,x2,y2,lattice,V):
     '''
     Returns the change in energy dH (float) of insertion of a vortex-antivortex pair
     at site 1 and site 2 given a lattice configuration and potential.
@@ -144,7 +143,6 @@ def calc_dH_pair_mirror(dq,q1,q2,current,x1,y1,x2,y2,lattice,V):
                     dq (int/float): The change in charge at site (x1,y1) and negative change in charge at site (x2,y2)
                     q1 (int): The initial charge at site (x1,y1)
                     q2 (int): The initial charge at site (x1,y1)
-                    current (float): The current coupling
                     x1 (int): The x-coordinate of site 1
                     y1 (int): The y-coordinate of site 1
                     x2 (int): The x-coordinate of site 2
@@ -198,14 +196,13 @@ def calc_dH_pair_mirror(dq,q1,q2,current,x1,y1,x2,y2,lattice,V):
     return dH
 
 @njit
-def calc_dH_single_mirror(dq,q1,current,x1,y1,lattice,V):
+def calc_dH_single_mirror(dq,q1,x1,y1,lattice,V):
     '''
     Returns the change in energy dH (float) of insertion of a single vortex at site 1 given a configuration and potential.
 
             Parameters:
                     dq (int/float): The change in charge at site (x1,y1)
                     q1 (int): The initial charge at site (x1,y1)
-                    current (float): The current coupling
                     x1 (int): The x-coordinate of site 1
                     y1 (int): The y-coordinate of site 1
                     lattice (array): The configuration of charges
