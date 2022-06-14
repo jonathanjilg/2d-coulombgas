@@ -1,4 +1,4 @@
-# 2d-coulombgas
+# 2d-coulombgas - Master thesis
 This code is part of a master thesis at KTH modeling superconducting nanowires. With some simplifications, superconducting vortices may be modeled as electrical charges interacting with the 2D Coulomb potential.
 
 This is a Monte Carlo implementation of the 2D Coulomb gas model using the Metropolis algorithm. Both periodic and open boundary conditions are allowed, the latter for mirror configurations used with the method of images.
@@ -24,4 +24,4 @@ The mirror configuration with open boundary condition is somewhat more difficult
 
 ## References
 * https://en.wikipedia.org/wiki/Metropolis%E2%80%93Hastings_algorithm
-* Master thesis to be published
+* Master thesis: http://urn.kb.se/resolve?urn=urn:nbn:se:kth:diva-309346
